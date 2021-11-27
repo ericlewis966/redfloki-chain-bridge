@@ -11,6 +11,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/api/bridge', bridge);
 app.use(express.static(__dirname + '/client/build'));
+
+app.get('/', () => {
+
+})
+
 const port = process.env.PORT || 80;
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
