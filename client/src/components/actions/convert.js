@@ -40,7 +40,7 @@ export const ethToBscRequest = async (account, value, signature, hash) => {
             toast.error("Server is not working. \n Check your network connection.", {
                 transition: bounce
             })
-
+            console.log(err)
         });
 }
 
@@ -78,6 +78,6 @@ export const bscToEthRequest = async (account, value, signature, hash) => {
             toast.error("Server is not working. \n Check your network connection.", {
                 transition: bounce
             })
-
+            console.log(err);
         });
 }

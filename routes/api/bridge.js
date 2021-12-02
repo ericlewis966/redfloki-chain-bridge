@@ -10,7 +10,6 @@ const addresses = require("../../client/src/components/contract/config.json");
 const eth_bridge = addresses.eth_bridge;
 const bsc_bridge = addresses.bsc_bridge;
 const net_config = require("../../net.config.json");
-const { is } = require('express/lib/request');
 
 const ethnet = net_config.eth_url;
 const bscnet = net_config.bsc_url;
@@ -34,7 +33,7 @@ const adminBscWallet = new ethers.Wallet(adminaccount.privateKey, bsc_provider);
 const signedEthContract = eth_contract.connect(adminEthWallet);
 const signedBscContract = bsc_contract.connect(adminBscWallet);
 
-const sig = "0x6162636400000000000000000000000000000000000000000000000000000000";
+// const sig = "0x6162636400000000000000000000000000000000000000000000000000000000";
 
 router.post('/eth2bsc', async (req, res) => {
   var account = req.body.account;
@@ -79,7 +78,7 @@ router.post('/eth2bsc', async (req, res) => {
 
   console.log(`I will burn BSCFloki from ${account}`)
   try {
-    var tx = await signedEthContract.burn(account, BigNumber.from(String(amount * Math.pow(10, 18))), 0, sig)
+    var tx = await signedEthContract.burn(account, BigNumber.from(String(amount * Math.pow(10, 18))))
     console.log(tx.hash);
     console.log("First transaction successed(ETHFloki burned)");
   } catch (e) {
@@ -88,7 +87,7 @@ router.post('/eth2bsc', async (req, res) => {
   }
   console.log(`I will mint BSCFloki to ${account}`)
   try {
-    var tx1 = await signedBscContract.mint(account, account, BigNumber.from(String(amount * Math.pow(10, 18))), 0, sig);
+    var tx1 = await signedBscContract.mint(account, account, BigNumber.from(String(amount * Math.pow(10, 18))));
     console.log(tx1.hash);
     console.log("Second transaction successed(BSCFloki minted)");
   } catch (e) {
@@ -141,7 +140,7 @@ router.post('/bsc2eth', async (req, res) => {
 
   console.log(`I will burn BSCFloki from ${account}`)
   try {
-    var tx = await signedBscContract.burn(account, BigNumber.from(String(amount * Math.pow(10, 18))), 0, sig)
+    var tx = await signedBscContract.burn(account, BigNumber.from(String(amount * Math.pow(10, 18))))
     console.log(tx.hash);
     console.log("First transaction successed(BTK burned)");
   } catch (e) {
@@ -150,7 +149,7 @@ router.post('/bsc2eth', async (req, res) => {
   }
   console.log(`I will mint ETHFloki to ${account}`)
   try {
-    var tx1 = await signedEthContract.mint(account, account, BigNumber.from(String(amount * Math.pow(10, 18))), 0, sig);
+    var tx1 = await signedEthContract.mint(account, account, BigNumber.from(String(amount * Math.pow(10, 18))));
     console.log(tx1.hash);
     console.log("Second transaction successed(ETHFloki minted)");
   } catch (e) {
