@@ -22,6 +22,7 @@ code {
   --theme-color: red;
   --foreground-color: red;
   --background-color: #fff3f3;
+  --scrollpos: 0;
 }
 
 .flex {

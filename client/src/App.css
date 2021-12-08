@@ -1,3 +1,8 @@
+:root {
+  --scrollpos: 0;
+  --border-wdith: 3px;
+}
+
 .App {
   text-align: center;
   width: 100%;
@@ -279,4 +284,161 @@
 
 .footer-title {
   margin: 0 auto;
+}
+
+.nft-items {
+  justify-content: center;
+  align-items: center;
+}
+
+.landing-bridge-dashboard {
+  width: 100% !important;
+}
+
+.dashboard-container {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.css-3d-text {
+  width: 40%;
+  text-align: center;
+  font-size: 300%;
+  color: #fa4444;
+    font-family: Impact, Charcoal, sans-serif;
+    text-shadow: 0px 0px 0 rgb(235,53,53),
+                 0px 1px 0 rgb(221,39,39),
+                 0px 2px 0 rgb(206,24,24),
+                 0px 3px 0 rgb(191,9,9),
+                 0px 4px  0 rgb(176,-6,0),
+                 0px 5px 4px rgba(0,0,0,0.48),
+                 0px 5px 1px rgba(0,0,0,0.5),
+                 0px 0px 4px rgba(0,0,0,.2);
+}
+
+.css-3d-text2 {
+  font-size: 87px;
+  color: #fa4444;
+  font-family: Impact, Charcoal, sans-serif;
+  text-shadow: 0px 0px 0 rgb(237,55,55),
+                0px 1px 0 rgb(225,43,43),
+               0px 2px 0 rgb(212,30,30),
+               0px 3px 0 rgb(200,18,18),
+               0px 4px 0 rgb(187,5,5),
+               0px 5px 0 rgb(175,-7,0),
+               0px 6px 0 rgb(162,-20,0),
+               0px 7px 0 rgb(150,-32,0),
+               0px 8px 0 rgb(137,-45,0),
+               0px 9px 0 rgb(125,-57,0),
+               0px 10px 0 rgb(112,-70,0),
+               0px 11px  0 rgb(99,-83,0),
+               0px 12px 11px rgba(0,0,0,0.48),
+               0px 12px 1px rgba(0,0,0,0.5),
+               0px 0px 11px rgba(0,0,0,.2);
+  transition: 0.5s;
+}
+
+.inventory-panel {
+  flex-wrap:wrap;
+  justify-content: space-evenly;
+  margin-bottom: 5%;
+  height: 80vh;
+  background-color: #fa4444;
+  transition: 0.6s;
+  border-radius: 3px;
+  justify-content: space-evenly;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.inventory-opened {
+  width: 80%;
+}
+
+.inventory-closed {
+  width: 0%;
+}
+.gradient-border {
+  content: '';
+  border-radius: calc(2 * 3px);
+  animation: animatedgradient 3s ease alternate infinite;
+  background-size: 300% 300%;
+}
+.inventory-panel-header {
+  /* background-color: #fff; */
+  width: 97%;
+  height: 10%;
+  border-radius: 5px;
+  justify-content: center;
+}
+
+.inventory-panel-body {
+  overflow-y: auto;
+  flex-wrap:wrap;
+  justify-content: space-evenly;
+  background-color: #fff;
+  width: 97%;
+  height: 85%;
+  border-radius: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.inventory-panel-body::-webkit-scrollbar {
+  width: 10px;
+}
+
+.inventory-panel-body::-webkit-scrollbar-thumb {
+  background-color: #fa4444;
+  /* background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82); */
+  border-radius: 3px;
+  cursor: pointer;
+  background-size: 300% 300%;
+}
+
+.nft-item {
+  /* background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82); */
+  justify-content: space-between;
+  background-color: #a09696;
+  position:relative;
+  border-radius: calc(2 * 3px);
+  border-radius: 3px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  align-items: center;
+  width: 45%;
+  height: fit-content;
+  margin-top: 2%;
+  margin-bottom: 1%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  background-size: 200% 200%;
+  transition: 0.4s;
+  cursor: pointer;
+}
+
+.video-view {
+  border-radius: 3px;
+  justify-content: center;
+}
+
+.eth-inventory {
+  width: 70%;
+}
+
+video {
+  border-radius: 2px;
+  box-shadow: rgb(85, 91, 255) 0px 0px 0px 1px, rgb(31, 193, 27) 0px 0px 0px 2px, rgb(255, 217, 19) 0px 0px 0px 3px, rgb(134, 134, 134) 0px 0px 0px 4px, rgb(255, 85, 85) 0px 0px 0px 5px;
+}
+
+.selected-item {
+  border: skyblue 2px solid;
+}
+
+.select-button {
+  width: 90%;
+  justify-content: center;
+}
+
+.select-button button {
+  width: 90%;
 }

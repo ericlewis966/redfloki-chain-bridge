@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "./ThemeButton";
 import "../styles/button.css";
 import floki from "../img/redfloki.svg";
@@ -14,6 +14,14 @@ const LandingPage = () => {
     window.location.assign(url);
   };
 
+  useEffect(() => {
+    const storeScroll = () => {
+      let perc =
+        (window.scrollY / (document.body.clientHeight - window.innerHeight)) *
+        100;
+      document.documentElement.setAttribute("style", `--scrollpos: ${perc}`);
+    };
+  }, []);
   return (
     <>
       {/* <Particle params={particlesConfig} className="App-particles__container" /> */}
@@ -79,7 +87,7 @@ const LandingPage = () => {
         </div> */}
       </div>
       <div className="dashboard-section flex">
-        <div className="landing-page flex">
+        <div className="landing-page landing-bridge-dashboard flex">
           <BridgeDashboard />
         </div>
       </div>

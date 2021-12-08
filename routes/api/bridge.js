@@ -37,17 +37,19 @@ const signedBscContract = bsc_contract.connect(adminBscWallet);
 
 router.post('/eth2bsc', async (req, res) => {
   var account = req.body.account;
-  var amount = req.body.amount;
+  var id = req.body.id;
+  var uri = req.body.uri;
   var signature = req.body.signature;
   var msg = req.body.hash;
 
   const isValidAddress = ethUtil.isValidAddress(account);
-  const isValidAmount = amount > 0;
+  const isValidId = id >= 0;
+  const isValidURI = uri.length >= 1;
   const isValidSign = ethUtil.isHexPrefixed(String(signature));
   const isValidHash = ethUtil.isHexPrefixed(String(msg));
 
-  if (!(isValidAddress && isValidAmount && isValidSign && isValidHash)) {
-    return res.status(500).json({ step: 1, message: `Security error! Server received invalid prams!${isValidAddress}, ${amount}, ${isValidSign}, ${isValidHash}` });
+  if (!(isValidAddress && isValidId && isValidSign && isValidHash && isValidURI)) {
+    return res.status(500).json({ step: 1, message: `Security error! Server received invalid prams!${isValidAddress}, ${id}, ${uri}, ${isValidSign}, ${isValidHash}` });
   }
 
   var msgBuffer = '';
@@ -76,41 +78,43 @@ router.post('/eth2bsc', async (req, res) => {
     return res.status(500).json({ step: 1, message: 'Security error! Transaction caller is not signer!' })
   }
 
-  console.log(`I will burn BSCFloki from ${account}`)
+  console.log(`I will burn ETHFloki from ${account}`)
   try {
-    var tx = await signedEthContract.burn(account, BigNumber.from(String(amount * Math.pow(10, 18))))
+    var tx = await signedEthContract.burn(account, id)
     console.log(tx.hash);
     console.log("First transaction successed(ETHFloki burned)");
   } catch (e) {
     console.log("Transaction to burn ETHFloki faild");
-    return res.status(500).json({ step: 1, message: 'Transaction Faild! \nCheck your account and token balance.' })
+    return res.status(500).json({ step: 1, message: 'Transaction Faild! \nCheck your account and NFT.' })
   }
   console.log(`I will mint BSCFloki to ${account}`)
   try {
-    var tx1 = await signedBscContract.mint(account, account, BigNumber.from(String(amount * Math.pow(10, 18))));
+    var tx1 = await signedBscContract.mint(account, uri, '');
     console.log(tx1.hash);
     console.log("Second transaction successed(BSCFloki minted)");
   } catch (e) {
     console.log("Transanction to mint BSCFloki faild");
     return res.status(500).json({ step: 2, message: 'Transaction Faild! \nCheck your account.' })
   }
-  return res.send(`Success! \n ${amount} ETHFloki converted to ${amount} BSCFloki in your wallet.`);
+  return res.send(`Success! \n ETHFloki converted to BSCFloki in your wallet.`);
 });
 
 
 router.post('/bsc2eth', async (req, res) => {
   var account = req.body.account;
-  var amount = req.body.amount;
+  var id = req.body.id;
+  var uri = req.body.uri;
   var signature = req.body.signature;
   var msg = req.body.hash;
 
   const isValidAddress = ethUtil.isValidAddress(account);
-  const isValidAmount = amount > 0;
+  const isValidId = id >= 0;
+  const isValidURI = uri.length >= 1;
   const isValidSign = ethUtil.isHexPrefixed(String(signature));
   const isValidHash = ethUtil.isHexPrefixed(String(msg));
 
-  if (!(isValidAddress && isValidAmount && isValidSign && isValidHash)) {
-    return res.status(500).json({ step: 1, message: 'Security error! Server received invalid prams!' });
+  if (!(isValidAddress && isValidId && isValidSign && isValidHash && isValidURI)) {
+    return res.status(500).json({ step: 1, message: `Security error! Server received invalid prams!${isValidAddress}, ${id}, ${uri}, ${isValidSign}, ${isValidHash}` });
   }
 
   var msgBuffer = '';
@@ -140,7 +144,7 @@ router.post('/bsc2eth', async (req, res) => {
 
   console.log(`I will burn BSCFloki from ${account}`)
   try {
-    var tx = await signedBscContract.burn(account, BigNumber.from(String(amount * Math.pow(10, 18))))
+    var tx = await signedBscContract.burn(account, id)
     console.log(tx.hash);
     console.log("First transaction successed(BTK burned)");
   } catch (e) {
@@ -149,14 +153,14 @@ router.post('/bsc2eth', async (req, res) => {
   }
   console.log(`I will mint ETHFloki to ${account}`)
   try {
-    var tx1 = await signedEthContract.mint(account, account, BigNumber.from(String(amount * Math.pow(10, 18))));
+    var tx1 = await signedEthContract.mint(account, uri, '');
     console.log(tx1.hash);
     console.log("Second transaction successed(ETHFloki minted)");
   } catch (e) {
     console.log("Transaction to mint ETHFloki faild");
     return res.status(500).json({ step: 2, message: 'Transaction Faild! \nCheck your account.' })
   }
-  return res.send(`Success! \n ${amount} BSCFloki converted to ${amount} ETHFloki in your wallet.`);
+  return res.send(`Success! \n BSCFloki converted to ETHFloki in your wallet.`);
 });
 
 module.exports = router;

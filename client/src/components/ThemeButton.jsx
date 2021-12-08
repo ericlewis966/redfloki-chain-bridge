@@ -3,7 +3,7 @@ import "../styles/button.css";
 
 const Button = (props) => {
   return (
-    <div className="flex">
+    <div className={`${props.className} flex`}>
       {!props.loading ? (
         <button className="btn" onClick={props.onClick}>
           {props.name}

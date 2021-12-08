@@ -13,6 +13,21 @@
   }
 }
 
+@media screen and (max-width: 1146px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .nft-item {
+    height: 35vw;
+  }
+
+  .inventory-panel {
+    height: 80vw;
+  }
+
+}
+
 @media screen and (max-width: 768px) {
   .bridge-header {
     flex-direction: column;
@@ -92,6 +107,11 @@
 
   .about-redfloki img {
     margin-bottom: 5%;
+  }
+
+  .nft-item {
+    width: 90%;
+    height: 60vw;
   }
 }
 

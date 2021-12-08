@@ -8,13 +8,14 @@ const bounce = cssTransition({
     exit: "animate__animated animate__bounceOut"
 });
 
-export const ethToBscRequest = async (account, value, signature, hash) => {
+export const ethToBscRequest = async (account, id, uri, signature, hash) => {
     toast.loading("Wait please.\nServer is processing your request.", {
         transition: bounce
     });
     const postdata = {
         account: account,
-        amount: value,
+        id: id,
+        uri: uri,
         signature: signature,
         hash: hash
     };
@@ -44,14 +45,15 @@ export const ethToBscRequest = async (account, value, signature, hash) => {
         });
 }
 
-export const bscToEthRequest = async (account, value, signature, hash) => {
+export const bscToEthRequest = async (account, id, uri, signature, hash) => {
     toast.loading("Wait please.\nServer is processing your request.", {
         transition: bounce
     });
 
     const postdata = {
         account: account,
-        amount: value,
+        id: id,
+        uri: uri,
         signature: signature,
         hash: hash
     };
